@@ -11,7 +11,14 @@
 				 margin: 0;
 				 background: linear-gradient(#2c9eff, #f1e9dd)
 			}
-			
+
+			.square {
+				width: 300px;
+				background: #fff;
+
+				position: absolute;
+			}
+
 		</style>
 
 		<script src="three.js"></script>
@@ -20,10 +27,18 @@
 	</head>
 
 	<body>
+		<div class="square">
+			<div class="upload">
+				<input type="file" id="file">
+			</div>
 
-		<audio id="myAudio" autoplay controls>
-			<source id="mySource" src="" type="audio/mpeg">
-		</audio>
+
+
+			<audio id="myAudio" autoplay controls>
+				<source id="mySource" src="" type="audio/mpeg">
+			</audio>
+		</div>
+
 
 	</body>
 </html>

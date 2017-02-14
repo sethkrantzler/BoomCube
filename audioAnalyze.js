@@ -1,4 +1,7 @@
 window.onload = function() {
+  setupFileUpload()
+
+
   var ctx = new AudioContext();
   var audio = document.getElementById('myAudio');
   var source = document.getElementById('mySource');
@@ -100,3 +103,16 @@ window.onload = function() {
 
 
 };
+
+function setupFileUpload() {
+  document.getElementById('file').onchange = function() {
+    console.log("selected")
+
+    let file = document.getElementById('file').files[0]
+    let blob = window.URL || window.webkitURL
+    let fileURL = blob.createObjectURL(file)
+    console.log(fileURL)
+    document.getElementById('myAudio').src = fileURL;
+
+  }
+}
