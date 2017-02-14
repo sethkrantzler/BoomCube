@@ -25,6 +25,10 @@ window.onload = function() {
 
   // Setup all the cubes
   var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+  //the line below makes it so that scaling the y axis only scales from the bottom,
+  //removing it will create a symettric visualization of the frequencies
+  geometry.translate( 0, 0.5, 0 );
+
   // each cube side gets another color
   var cubeMaterials1 = [
       new THREE.MeshBasicMaterial({color:0x00e500, transparent:true, opacity:0.8}),
@@ -62,21 +66,21 @@ window.onload = function() {
   for (var i = 0; i < 12; i++){
     if (i < 3){
       var rCube = new THREE.Mesh(geometry, cubeMaterial2);
-      rCube.position.y = -1;
+      rCube.position.y = -4;
       rCube.position.x = -12 + 2*i;
       cubes.push(rCube);
       scene.add(cubes[i]);
     }
     else if (i > 9){
       var yCube = new THREE.Mesh(geometry, cubeMaterial3);
-      yCube.position.y = -1;
+      yCube.position.y = -4;
       yCube.position.x = -12 + 2*i;
       cubes.push(yCube);
       scene.add(cubes[i]);
     }
     else {
       var gCube = new THREE.Mesh(geometry, cubeMaterial1);
-      gCube.position.y = -1;
+      gCube.position.y = -4;
       gCube.position.x = -12 + 2*i;
       cubes.push(gCube);
       scene.add(cubes[i]);
