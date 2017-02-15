@@ -1,3 +1,5 @@
+const NUM_BARS = 16
+
 window.onload = function() {
   setupFileUpload()
 
@@ -7,6 +9,8 @@ window.onload = function() {
   var source = document.getElementById('mySource');
   var audioSrc = ctx.createMediaElementSource(audio);
   var analyser = ctx.createAnalyser();
+
+  analyser.fftSize = NUM_BARS*2
   audio.crossOrigin = "anonymous";
   source.src = "http://crossorigin.me/https://w-labs.at/experiments/audioviz/GYAKO.mp3";
   // we have to connect the MediaElementSource with the analyser
@@ -63,25 +67,27 @@ window.onload = function() {
   var cubes = [];
 
   //add all the cubes you want to the scene
-  for (var i = 0; i < 12; i++){
-    if (i < 3){
+  let third = Math.floor(NUM_BARS/3)
+
+  for (var i = 0; i < NUM_BARS; i++){
+    if (i < third){
       var rCube = new THREE.Mesh(geometry, cubeMaterial2);
       rCube.position.y = -4;
-      rCube.position.x = -12 + 2*i;
+      rCube.position.x = -1 * NUM_BARS + 2*i;
       cubes.push(rCube);
       scene.add(cubes[i]);
     }
-    else if (i > 9){
+    else if (i >= NUM_BARS-third){
       var yCube = new THREE.Mesh(geometry, cubeMaterial3);
       yCube.position.y = -4;
-      yCube.position.x = -12 + 2*i;
+      yCube.position.x = -1 * NUM_BARS + 2*i;
       cubes.push(yCube);
       scene.add(cubes[i]);
     }
     else {
       var gCube = new THREE.Mesh(geometry, cubeMaterial1);
       gCube.position.y = -4;
-      gCube.position.x = -12 + 2*i;
+      gCube.position.x = -1 * NUM_BARS + 2*i;
       cubes.push(gCube);
       scene.add(cubes[i]);
     }
@@ -92,7 +98,7 @@ window.onload = function() {
      // update data in frequencyData
      analyser.getByteFrequencyData(frequencyData);
 
-     for (var i = 0; i < 12; i++){
+     for (var i = 0; i < NUM_BARS; i++){
        cubes[i].scale.y = frequencyData[i] / 25;
      }
 
