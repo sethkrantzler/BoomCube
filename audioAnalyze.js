@@ -12,7 +12,7 @@ window.onload = function() {
 
   analyser.fftSize = NUM_BARS*2
   audio.crossOrigin = "anonymous";
-  source.src = "http://crossorigin.me/https://w-labs.at/experiments/audioviz/GYAKO.mp3";
+  
   // we have to connect the MediaElementSource with the analyser
   audioSrc.connect(analyser);
   audioSrc.connect(ctx.destination);
@@ -100,6 +100,7 @@ window.onload = function() {
 
      for (var i = 0; i < NUM_BARS; i++){
        cubes[i].scale.y = frequencyData[i] / 25;
+       //cubes[i].rotation.y += 0.1;
      }
 
      renderer.render( scene, camera );
